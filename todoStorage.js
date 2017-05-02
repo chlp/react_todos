@@ -23,7 +23,15 @@ class TodoStorage {
     }
 
     save() {
-        this.storage.todos = JSON.stringify(this.todos);
+        let arrayToSave = [];
+        this.todos.forEach(todo => {
+            arrayToSave.push({
+                about: todo.about,
+                date: todo.date,
+                done: todo.done
+            });
+        });
+        this.storage.todos = JSON.stringify(arrayToSave);
     }
 
     load() {
