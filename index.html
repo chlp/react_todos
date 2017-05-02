@@ -5,14 +5,17 @@
     <title>Todos</title>
 
     <script src="third/babel.min.js"></script>
+    <script src="third/react.js"></script>
+    <script src="third/react-dom.js"></script>
+    <script src="third/prop-types.js"></script>
 
     <script type="text/babel" src="todo.js"></script>
     <script type="text/babel" src="todoStorage.js"></script>
+
+    <script type="text/babel" src="todo__view.jsx"></script>
 </head>
 <body>
-<script type="text/babel">
-    //    import TodoStorage from 'todoStorage';
-    var todoStorage = new TodoStorage();
-</script>
+<div id="root"></div>
+<script type="text/babel" src="app.jsx"></script>
 </body>
 </html>

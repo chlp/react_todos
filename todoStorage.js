@@ -11,7 +11,13 @@ class TodoStorage {
          */
         this.todos = [];
 
+        this.onready = this.onready.bind(this);
+
         this.load();
+    }
+
+    onready(callback) {
+        callback();
     }
 
     save() {
