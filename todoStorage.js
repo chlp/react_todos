@@ -34,9 +34,8 @@ class TodoStorage {
             });
         } catch (ex) {
             console.log('new todos list');
-            this.save();
+            this.sync();
         }
-
         console.log('loaded ' + this.todos.length + ' todos');
     }
 
@@ -45,11 +44,22 @@ class TodoStorage {
         this.sync();
     }
 
+    remove(deletedTodo) {
+        let found = false;
+        this.todos.forEach((todo, index) => {
+            if (!found && todo.guid === deletedTodo.guid) {
+                this.todos.splice(index, 1);
+                found = true;
+            }
+        });
+        this.sync();
+    }
+
     sync() {
         var newTodosStr = JSON.stringify(this.todos);
         if (newTodosStr !== this.storage.todos) {
             this.save();
-            this.eventEmitter.emit('Todos.update', this);
+            this.eventEmitter.emit('Todos.update', this.todos);
         }
     }
 }

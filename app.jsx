@@ -13,15 +13,14 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todoStorage: this.props.todoStorage
+            todos: this.props.todoStorage.todos
         };
     }
 
     componentDidMount() {
-        var self = this;
-        this.props.eventEmitter.addListener('Todos.update', (todoStorage) => {
-            self.setState({
-                todoStorage: todoStorage
+        this.props.eventEmitter.addListener('Todos.update', (todos) => {
+            this.setState({
+                todos: todos
             });
         });
     }
@@ -31,9 +30,9 @@ class App extends React.Component {
     }
 
     render() {
-        let todosTemplate = this.state.todoStorage.todos.map(function (todo, index) {
+        let todosTemplate = this.state.todos.map(todo => {
             return (
-                <Todo__View todo={todo} key={index}/>
+                <Todo__View todo={todo} todoStorage={this.props.todoStorage} key={todo.guid}/>
             )
         });
         return (
