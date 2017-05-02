@@ -1,3 +1,5 @@
+//    import Todo__View from 'todo_view';
+//    import AddTodo__View from 'addTodo_view';
 //    import TodoStorage from 'todoStorage';
 const todoStorage = new TodoStorage();
 
@@ -19,6 +21,7 @@ class App extends React.Component {
         });
         return (
             <div className="todos-div">
+                <AddTodo__View/>
                 {todosTemplate}
             </div>
         );
