@@ -27,7 +27,7 @@ class AddTodo__View extends React.Component {
         let date = this.fromDateTimeInput(this.refs.date.value);
         let done = false;
 
-        let todo = new Todo({about, date, done});
+        let todo = new Todo({about, date, done}, this.props.todoStorage);
         this.props.todoStorage.add(todo);
     }
 

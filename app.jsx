@@ -32,7 +32,7 @@ class App extends React.Component {
     render() {
         let todosTemplate = this.state.todos.map(todo => {
             return (
-                <Todo__View todo={todo} todoStorage={this.props.todoStorage} key={todo.guid}/>
+                <Todo__View todo={todo} key={todo.guid}/>
             )
         });
         return (

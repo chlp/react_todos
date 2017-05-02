@@ -22,7 +22,7 @@ class TodoStorage {
         callback();
     }
 
-    save() {
+    toJson() {
         let arrayToSave = [];
         this.todos.forEach(todo => {
             arrayToSave.push({
@@ -31,20 +31,22 @@ class TodoStorage {
                 done: todo.done
             });
         });
-        this.storage.todos = JSON.stringify(arrayToSave);
+        return JSON.stringify(arrayToSave);
+    }
+
+    save() {
+        this.storage.todos = this.toJson();
     }
 
     load() {
         this.todos = [];
         try {
-            JSON.parse(this.storage.todos).forEach((obj) => {
-                this.todos.push(new Todo(obj));
+            JSON.parse(this.storage.todos).forEach(obj => {
+                this.todos.push(new Todo(obj, this));
             });
         } catch (ex) {
-            console.log('new todos list');
             this.sync();
         }
-        console.log('loaded ' + this.todos.length + ' todos');
     }
 
     add(todo) {
@@ -64,7 +66,7 @@ class TodoStorage {
     }
 
     sync() {
-        var newTodosStr = JSON.stringify(this.todos);
+        var newTodosStr = this.toJson();
         if (newTodosStr !== this.storage.todos) {
             this.save();
             this.eventEmitter.emit('Todos.update', this.todos);
