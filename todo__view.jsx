@@ -20,7 +20,7 @@ class Todo__View extends React.Component {
         var todo = this.state.todo;
         return (
             <div>
-                | {todo.about} | {todo.date} | {todo.done} |
+                | {todo.about} | {'' + todo.date} | {todo.done} |
                 <input type="button" value="delete" onClick={this.onDeleteBtnClick}/>
             </div>
         );
