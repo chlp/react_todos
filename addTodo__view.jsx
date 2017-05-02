@@ -1,6 +1,11 @@
 class AddTodo__View extends React.Component {
+    static propTypes = {
+        todoStorage: PropTypes.any.isRequired
+    };
+
     constructor(props) {
         super(props);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     toDateTimeInputValue(date) {
@@ -9,15 +14,31 @@ class AddTodo__View extends React.Component {
         return local.toJSON().slice(0, 16);
     }
 
+    fromDateTimeInput(dateStr) {
+        let d = new Date(dateStr);
+        d.setTime(d.getTime() + d.getTimezoneOffset() * 60 * 1000);
+        return d;
+    }
+
+    onFormSubmit(ev) {
+        ev.preventDefault();
+
+        let about = this.refs.about.value.trim();
+        let date = this.fromDateTimeInput(this.refs.date.value);
+        let done = false;
+
+        let todo = new Todo({about, date, done});
+        this.props.todoStorage.add(todo);
+    }
+
     render() {
-        var todo = this.props.todo;
         return (
-            <form>
+            <form onSubmit={this.onFormSubmit}>
                 <strong>New todo</strong><br/>
                 About:
-                <input type="text" name="about" required={true} defaultValue=""/><br/>
+                <input ref="about" type="text" name="about" defaultValue=""/><br/>
                 Date:
-                <input type="datetime-local" name="date" required={true} defaultValue={this.toDateTimeInputValue(new Date())}/><br/>
+                <input ref="date" type="datetime-local" name="date" defaultValue={this.toDateTimeInputValue(new Date())}/><br/>
                 <input type="submit" value="Add"/>
             </form>
         );

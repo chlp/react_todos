@@ -2,7 +2,9 @@
 
 // export default
 class TodoStorage {
-    constructor() {
+    constructor(eventEmitter) {
+        this.eventEmitter = eventEmitter;
+
         this.storage = window.localStorage;
 
         /**
@@ -21,17 +23,18 @@ class TodoStorage {
     }
 
     save() {
-        this.storage['todos'] = JSON.stringify(this.todos);
+        this.storage.todos = JSON.stringify(this.todos);
     }
 
     load() {
         this.todos = [];
         try {
-            JSON.parse(this.storage['todos']).forEach((obj) => {
+            JSON.parse(this.storage.todos).forEach((obj) => {
                 this.todos.push(new Todo(obj));
             });
         } catch (ex) {
             console.log('new todos list');
+            this.save();
         }
 
         console.log('loaded ' + this.todos.length + ' todos');
@@ -39,5 +42,14 @@ class TodoStorage {
 
     add(todo) {
         this.todos.push(todo);
+        this.sync();
+    }
+
+    sync() {
+        var newTodosStr = JSON.stringify(this.todos);
+        if (newTodosStr !== this.storage.todos) {
+            this.save();
+            this.eventEmitter.emit('Todos.update', this);
+        }
     }
 }

@@ -6,7 +6,11 @@ class Todo {
         done: false
     }) {
         this.about = obj.about;
-        this.date = obj.date;
+        this.date = '' + new Date(obj.date);
         this.done = obj.done;
+    }
+
+    date() {
+        return new Date(this.date);
     }
 }

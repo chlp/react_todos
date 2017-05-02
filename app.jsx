@@ -1,27 +1,44 @@
 //    import Todo__View from 'todo_view';
 //    import AddTodo__View from 'addTodo_view';
 //    import TodoStorage from 'todoStorage';
-const todoStorage = new TodoStorage();
+const eventEmitter = new EventEmitter();
+const todoStorage = new TodoStorage(eventEmitter);
 
 class App extends React.Component {
     static propTypes = {
-        todoStorage: PropTypes.any.isRequired
+        todoStorage: PropTypes.any.isRequired,
+        eventEmitter: PropTypes.any.isRequired
     };
 
     constructor(props) {
         super(props);
+        this.state = {
+            todoStorage: this.props.todoStorage
+        };
+    }
+
+    componentDidMount() {
+        var self = this;
+        this.props.eventEmitter.addListener('Todos.update', (todoStorage) => {
+            self.setState({
+                todoStorage: todoStorage
+            });
+        });
+    }
+
+    componentWillUnmount() {
+        this.props.eventEmitter.removeListener('Todos.update');
     }
 
     render() {
-        var todos = this.props.todoStorage.todos;
-        var todosTemplate = todos.map(function (todo, index) {
+        let todosTemplate = this.state.todoStorage.todos.map(function (todo, index) {
             return (
                 <Todo__View todo={todo} key={index}/>
             )
         });
         return (
             <div className="todos-div">
-                <AddTodo__View/>
+                <AddTodo__View todoStorage={this.props.todoStorage}/>
                 {todosTemplate}
             </div>
         );
@@ -30,7 +47,7 @@ class App extends React.Component {
 
 todoStorage.onready(() => {
     ReactDOM.render(
-        <App todoStorage={todoStorage}/>,
+        <App todoStorage={todoStorage} eventEmitter={eventEmitter}/>,
         document.getElementById('root')
     );
 });
