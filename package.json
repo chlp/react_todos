@@ -2,7 +2,7 @@
   "name": "react-todos",
   "version": "0.0.1",
   "dependencies": {
-    "todo": "latest",
-    "todoStorage": "latest"
+    "connect": "latest",
+    "serve-static": "latest"
   }
 }
