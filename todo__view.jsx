@@ -22,12 +22,12 @@ class Todo__View extends React.Component {
     }
 
     dateDiffStr() {
-        var todo = this.state.todo;
+        let todo = this.state.todo;
         console.log(new Date() - todo.date);
     }
 
     render() {
-        var todo = this.state.todo;
+        let todo = this.state.todo;
         return (
             <div className="todo-div">
                 <div className="todo-about">{todo.about}</div>

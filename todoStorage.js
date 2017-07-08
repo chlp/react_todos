@@ -66,7 +66,7 @@ class TodoStorage {
     }
 
     sync() {
-        var newTodosStr = this.toJson();
+        let newTodosStr = this.toJson();
         if (newTodosStr !== this.storage.todos) {
             this.save();
             this.eventEmitter.emit('Todos.update', this.todos);
