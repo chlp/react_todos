@@ -10,6 +10,7 @@ class Todo__View extends React.Component {
         };
         this.onDoneBtnClick = this.onDoneBtnClick.bind(this);
         this.onDeleteBtnClick = this.onDeleteBtnClick.bind(this);
+        this.dateDiffStr = this.dateDiffStr.bind(this);
     }
 
     onDoneBtnClick() {
@@ -20,13 +21,21 @@ class Todo__View extends React.Component {
         this.state.todo.remove();
     }
 
+    dateDiffStr() {
+        var todo = this.state.todo;
+        console.log(new Date() - todo.date);
+    }
+
     render() {
         var todo = this.state.todo;
         return (
-            <div>
-                | {todo.about} | {'' + todo.date} | {todo.done ? 1 : 0} |
-                <input type="button" value="done" onClick={this.onDoneBtnClick}/>
-                <input type="button" value="delete" onClick={this.onDeleteBtnClick}/>
+            <div className="todo-div">
+                <div className="todo-about">{todo.about}</div>
+                <div className="todo-date">{'' + todo.date}</div>
+                <div className="todo-done">{todo.done ? 1 : 0}</div>
+                <div><input type="button" value="done" onClick={this.onDoneBtnClick}/></div>
+                <div><input type="button" value="delete" onClick={this.onDeleteBtnClick}/></div>
+                <div><input type="button" value="date diff" onClick={this.dateDiffStr}/></div>
             </div>
         );
     }
