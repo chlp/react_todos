@@ -1,6 +1,6 @@
 module.exports = {
-    entry: './app.jsx',
-    output: { path: __dirname, filename: 'bundle.js' },
+    entry: './src/app.jsx',
+    output: { path: __dirname, filename: 'build/bundle.js' },
     module: {
         loaders: [
             {
@@ -13,4 +13,7 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        contentBase: "./",
+    }
 };
