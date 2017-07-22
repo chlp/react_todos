@@ -1,7 +1,10 @@
 import React from 'react';
-import Todo__View from 'todo__view';
-import AddTodo__View from 'addTodo__view';
-import TodoStorage from 'todoStorage';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import EventEmitter from 'wolfy87-eventemitter';
+import Todo__View from './todo__view.jsx';
+import AddTodo__View from './addTodo__view.jsx';
+import TodoStorage from './todoStorage';
 
 const eventEmitter = new EventEmitter();
 const todoStorage = new TodoStorage(eventEmitter);
