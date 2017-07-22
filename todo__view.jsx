@@ -1,4 +1,6 @@
-class Todo__View extends React.Component {
+import React from 'react';
+
+export default class Todo__View extends React.Component {
     static propTypes = {
         todo: PropTypes.any.isRequired,
     };

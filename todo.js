@@ -1,5 +1,4 @@
-// export default
-class Todo {
+export default class Todo {
     constructor(obj = {
         about: '',
         date: new Date(),

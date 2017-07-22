@@ -1,7 +1,6 @@
-// import Todo from 'todo'
+import Todo from 'todo';
 
-// export default
-class TodoStorage {
+export default class TodoStorage {
     constructor(eventEmitter) {
         this.eventEmitter = eventEmitter;
 

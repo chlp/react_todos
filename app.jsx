@@ -1,6 +1,8 @@
-//    import Todo__View from 'todo_view';
-//    import AddTodo__View from 'addTodo_view';
-//    import TodoStorage from 'todoStorage';
+import React from 'react';
+import Todo__View from 'todo__view';
+import AddTodo__View from 'addTodo__view';
+import TodoStorage from 'todoStorage';
+
 const eventEmitter = new EventEmitter();
 const todoStorage = new TodoStorage(eventEmitter);
 

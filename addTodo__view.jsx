@@ -1,4 +1,6 @@
-class AddTodo__View extends React.Component {
+import React from 'react';
+
+export default class AddTodo__View extends React.Component {
     static propTypes = {
         todoStorage: PropTypes.any.isRequired
     };
