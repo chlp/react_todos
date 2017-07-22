@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class Todo__View extends React.Component {
-    static propTypes = {
-        todo: PropTypes.any.isRequired,
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -43,3 +39,7 @@ export default class Todo__View extends React.Component {
         );
     }
 }
+
+Todo__View.propTypes = {
+    todo: PropTypes.any.isRequired,
+};

@@ -12,12 +12,12 @@ export default class TodoStorage {
          */
         this.todos = [];
 
-        this.onready = this.onready.bind(this);
+        TodoStorage.onready = TodoStorage.onready.bind(this);
 
         this.load();
     }
 
-    onready(callback) {
+    static onready(callback) {
         callback();
     }
 

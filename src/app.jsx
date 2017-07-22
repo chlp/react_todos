@@ -10,11 +10,6 @@ const eventEmitter = new EventEmitter();
 const todoStorage = new TodoStorage(eventEmitter);
 
 class App extends React.Component {
-    static propTypes = {
-        todoStorage: PropTypes.any.isRequired,
-        eventEmitter: PropTypes.any.isRequired
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +44,12 @@ class App extends React.Component {
     }
 }
 
-todoStorage.onready(() => {
+App.propTypes = {
+    todoStorage: PropTypes.any.isRequired,
+    eventEmitter: PropTypes.any.isRequired
+};
+
+TodoStorage.onready(() => {
     ReactDOM.render(
         <App todoStorage={todoStorage} eventEmitter={eventEmitter}/>,
         document.getElementById('root')
