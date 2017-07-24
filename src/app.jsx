@@ -36,9 +36,11 @@ class App extends React.Component {
             )
         });
         return (
-            <div className="todos-div">
+            <div className="app-div">
                 <AddTodo__View todoStorage={this.props.todoStorage}/>
-                {todosTemplate}
+                <div className="todos-div">
+                    {todosTemplate}
+                </div>
             </div>
         );
     }
