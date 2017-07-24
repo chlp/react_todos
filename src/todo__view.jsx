@@ -32,7 +32,7 @@ export default class Todo__View extends React.Component {
                 <div className="todo-about">{todo.about}</div>
                 <div className="todo-date">{'' + todo.date}</div>
                 <div className="todo-done">{todo.done ? 1 : 0}</div>
-                <div><input type="button" value="done" onClick={this.onDoneBtnClick}/></div>
+                <div><input type="button" value={todo.done ? 'undone' : 'done'} onClick={this.onDoneBtnClick}/></div>
                 <div><input type="button" value="delete" onClick={this.onDeleteBtnClick}/></div>
                 <div><input type="button" value="date diff" onClick={this.dateDiffStr}/></div>
             </div>
